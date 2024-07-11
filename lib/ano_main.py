@@ -4,21 +4,18 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 
-# mes cabecalho
 def carregar_pagina(mes_arquivo_diretorio, nome_pagina):
     planilha_mes_1 = openpyxl.load_workbook(mes_arquivo_diretorio, data_only=True)
     pagina_mes = planilha_mes_1[nome_pagina]
     return pagina_mes
 
 
-# mes_puxar_informacoes
 from lib.mes_custo_mensal import get_custo_mensal, get_mes_atual, func_deu_erro
 # from mes_inventario import get_inventario
 from lib.mes_mapa_de_vendas import get_mapa_de_vendas
 # from mes_producao_mensal import get_producao_mensal
 
 
-# ano cabeçalho
 caminho_arquivo_ano = "arquivos/dre_ano/DRE_ANO.xlsx"
 planilha_ano = openpyxl.load_workbook(caminho_arquivo_ano, data_only=True)
 planilha_ano_write = openpyxl.load_workbook(caminho_arquivo_ano)
@@ -48,7 +45,7 @@ def puxar_coluna_meses():
         if valor[0]:
             coluna_meses_dre_ano[valor[0].lower()] = (
                 indice + 1
-            )  # + 1 para pegar valor de 'REAL'
+            )
 
     return coluna_meses_dre_ano
 
@@ -86,8 +83,8 @@ def puxar_linha_produto(tabela):
 
 def substituir_valores_mapa_de_vendas(mes_arquivo_diretorio):
     mapa_de_vendas = get_mapa_de_vendas(mes_arquivo_diretorio)
-    if func_deu_erro(): return
-    # get_custo_mensal(mes_arquivo_diretorio) # Puxar mes atual
+    if func_deu_erro():
+        return
     for produto in mapa_de_vendas:
         if (
             produto
@@ -103,7 +100,8 @@ def substituir_valores_mapa_de_vendas(mes_arquivo_diretorio):
 
 def substituir_valores_custo_mensal(mes_arquivo_diretorio):
     custo_mensal = get_custo_mensal(mes_arquivo_diretorio)
-    if func_deu_erro(): return
+    if func_deu_erro():
+        return
     for produto in custo_mensal:
         if (
             produto

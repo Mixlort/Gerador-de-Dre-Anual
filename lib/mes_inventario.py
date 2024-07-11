@@ -16,14 +16,3 @@ def get_inventario(mes_arquivo_diretorio):
             )
 
     return inventario
-
-
-# print(inventario)
-# {
-# 'Telha Portuguesa': 0,
-# 'Telha Romana': 1220.0,
-# 'Barro em Pó': 0
-# }
-
-# print(inventario["Telha Portuguesa"])
-# 0.0
